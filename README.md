@@ -6,5 +6,5 @@
 | Vinicius Pascoal |home/feed, agenda do voluntario, notificacao de eventos |
 | Tayssa Santos | |
 | Marcelo Gomes | |
-| Mariana Penalva | |
+| Mariana Penalva |Selecionar Tipo Perfil, Cadastro ONG, Cadastro de Voluntário |
 | Willijefferson Alves | |
