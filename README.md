@@ -7,4 +7,4 @@
 | Tayssa Santos | |
 | Marcelo Gomes | |
 | Mariana Penalva |Selecionar Tipo Perfil, Cadastro ONG, Cadastro de Voluntário |
-| Willijefferson Alves | |
+| Willijefferson Alves | Login, Recuperar Senha e Redefinir Senha. |
