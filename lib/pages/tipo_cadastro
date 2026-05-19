@@ -6,77 +6,75 @@ class TipoPerfilPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        toolbarHeight: 110, 
-        leadingWidth: 100,
-
-        leading: Container(
-          margin: const EdgeInsets.only(left: 10, top: 56), //ver essa questao do espacamento do botao dps
-          child: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const Icon(
-              Icons.arrow_circle_left_outlined,
-              color: Colors.orange,
-              size: 50,
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          Positioned(
+            top: 56,
+            left: 16,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Icon(
+                Icons.arrow_circle_left_outlined,
+                color: Colors.orange,
+                size: 50,
+              ),
             ),
           ),
-        ),
-      ),
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
-                elevation: 1,
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 33.5, vertical: 18.5),
-                fixedSize: const Size(160, 53),
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                    elevation: 1,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 33.5, vertical: 18.5),
+                    fixedSize: const Size(160, 53),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                    ),
+                  ),
+                  onPressed: () {},
+                  child: const Text(
+                    'Voluntário',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-              ),
-              onPressed: () {},
-              child: const Text(
-                'Voluntário',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                const SizedBox(height: 30),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                    elevation: 1,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 33.5, vertical: 18.5),
+                    fixedSize: const Size(160, 53),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                    ),
+                  ),
+                  onPressed: () {},
+                  child: const Text(
+                    'Organização',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-            const SizedBox(height: 30), 
-
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
-                elevation: 1,
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 33.5, vertical: 18.5),
-                fixedSize: const Size(160, 53),
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                ),
-              ),
-              onPressed: () {},
-              child: const Text(
-                'Organização',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
