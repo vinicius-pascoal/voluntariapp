@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:voluntariapp/features/login/pages/forgot_password_page.dart';
 import 'package:voluntariapp/features/login/widgets/login_layout.dart';
 
 import '../widgets/forgot_password.dart';
@@ -15,6 +16,18 @@ class RegisterPage extends StatelessWidget{
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: IconButton(
+                icon: const Icon(
+                    Icons.arrow_back_ios_new,
+                size: 20,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ),
             ForgotPasswordTextField(label: 'Insira seu E-mail:', hint: 'Insira o seu E-mail aqui.'),
             SizedBox(height: 18),
             ForgotPasswordTextField(
@@ -28,7 +41,14 @@ class RegisterPage extends StatelessWidget{
             SizedBox(height: 100),
             Center(
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ForgotPasswordPage(),
+                    ),
+                  );
+                },
                 child: const Text('Esqueci minha senha.'),
               ),
             ),
