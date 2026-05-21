@@ -11,23 +11,12 @@ class ForgotPasswordPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return LoginLayout(
+      showBackButtom: true,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
-                icon: const Icon(
-                  Icons.arrow_back_ios_new,
-                  size: 20,
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ),
             ForgotPasswordTextField(label: 'Crie uma nova senha:', hint: 'Crie a nova senha:'),
             SizedBox(height: 18),
             ForgotPasswordTextField(
