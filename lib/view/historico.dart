@@ -11,7 +11,9 @@ class _HistoricoState extends State<Historico> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:  Color(0xFFDDE9FF),
       appBar: AppBar(
+        toolbarHeight: 80,
         leading: Icon(
           Icons.arrow_circle_left_outlined,
           color: Color(0xFFFFA500),
