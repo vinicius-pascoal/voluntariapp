@@ -11,11 +11,10 @@ class _HistoricoState extends State<Historico> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       appBar: AppBar(
         leading: Icon(
           Icons.arrow_circle_left_outlined,
-          color: Colors.orange,
+          color: Color(0xFFFFA500),
           size: 40,
         ),
         //DDE9FF cor background
@@ -30,7 +29,7 @@ class _HistoricoState extends State<Historico> {
           IconButton(
             icon: const Icon(
               Icons.notifications_outlined,
-              color: Colors.orange,
+              color: Color(0xFFFFA500),
               size: 28,
             ),
             tooltip: 'Ver notificações',
@@ -39,7 +38,7 @@ class _HistoricoState extends State<Historico> {
             },
           ),
           IconButton(
-            icon: const Icon(Icons.person, color: Colors.orange, size: 40),
+            icon: const Icon(Icons.person, color: Color(0xFFFFA500), size: 40),
             tooltip: 'Página de Perfil',
             onPressed: () {
               // lógica do botão
@@ -47,8 +46,36 @@ class _HistoricoState extends State<Historico> {
           ),
         ],
       ),
-      body: Container(
-          
+      body: Container(),
+
+      bottomNavigationBar: SafeArea(
+        child: BottomNavigationBar(
+          backgroundColor: Color(0xFFFFA500),
+          currentIndex: 0,
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+     
+
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_filled, color: Colors.white, size: 40),
+              label: 'Início',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_today_outlined, color: Colors.white, size: 40),
+              label: 'Agenda',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.history, color: Colors.white, size: 40),
+              label: 'Histórico',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.logout, color: Colors.white, size: 40),
+              label: 'Sair',
+            ),
+          ],
+        ),
       ),
     );
   }
