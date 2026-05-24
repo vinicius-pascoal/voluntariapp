@@ -11,7 +11,7 @@ class _HistoricoState extends State<Historico> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  Color(0xFFDDE9FF),
+      backgroundColor: Color(0xFFDDE9FF),
       appBar: AppBar(
         toolbarHeight: 80,
         leading: Icon(
@@ -48,7 +48,42 @@ class _HistoricoState extends State<Historico> {
           ),
         ],
       ),
-      body: Container(),
+      body: ListView.builder(
+        itemCount: 5,
+
+        itemBuilder: (context, index) {
+          return SizedBox(
+            height: 100,
+
+            child: Card(
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+
+              child: ListTile(
+                title: const Text('evento'),
+
+                subtitle: const Text('detalhes do evento'),
+
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+
+                  children: [
+                    IconButton(
+                      icon: const Icon(
+                        Icons.arrow_downward,
+                        color: Color(0xFFFFA500),
+                      ),
+
+                      onPressed: () {
+                        print("data");
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
 
       bottomNavigationBar: SafeArea(
         child: BottomNavigationBar(
@@ -57,7 +92,6 @@ class _HistoricoState extends State<Historico> {
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,
           showUnselectedLabels: false,
-     
 
           items: const [
             BottomNavigationBarItem(
@@ -65,7 +99,11 @@ class _HistoricoState extends State<Historico> {
               label: 'Início',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today_outlined, color: Colors.white, size: 40),
+              icon: Icon(
+                Icons.calendar_today_outlined,
+                color: Colors.white,
+                size: 40,
+              ),
               label: 'Agenda',
             ),
             BottomNavigationBarItem(
