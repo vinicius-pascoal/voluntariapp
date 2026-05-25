@@ -14,11 +14,7 @@ class _HistoricoState extends State<Historico> {
       backgroundColor: Color(0xFFDDE9FF),
       appBar: AppBar(
         toolbarHeight: 80,
-        leading: Icon(
-          Icons.arrow_circle_left_outlined,
-          color: Color(0xFFFFA500),
-          size: 40,
-        ),
+        leading: Icon(Icons.arrow_back, color: Color(0xFFFFA500), size: 40),
         //DDE9FF cor background
         backgroundColor: Colors.transparent,
         title: const Text(
@@ -48,41 +44,75 @@ class _HistoricoState extends State<Historico> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: 5,
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
 
-        itemBuilder: (context, index) {
-          return SizedBox(
-            height: 100,
-
-            child: Card(
-              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-
-              child: ListTile(
-                title: const Text('evento'),
-
-                subtitle: const Text('detalhes do evento'),
-
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-
-                  children: [
-                    IconButton(
-                      icon: const Icon(
-                        Icons.arrow_downward,
-                        color: Color(0xFFFFA500),
-                      ),
-
-                      onPressed: () {
-                        print("data");
-                      },
-                    ),
-                  ],
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Pesquisar',
+                prefixIcon: Icon(Icons.filter_list),
+                suffixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
                 ),
+                filled: true,
+                fillColor: Color(0xFFF9F9F9),
               ),
             ),
-          );
-        },
+          ),
+
+          Expanded(
+            child: ListView.builder(
+              itemCount: 5,
+
+              itemBuilder: (context, index) {
+                return SizedBox(
+                  height: 100,
+
+                  child: Card(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
+
+                    child: ListTile(
+                      
+                      title: const Text(
+                        'Evento',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                        
+                      ),
+
+                      subtitle: const Text('detalhes do evento'),
+
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+
+                        children: [
+                          IconButton(
+                            icon: const Icon(
+                              Icons.arrow_downward,
+                              color: Color(0xFFFFA500),
+                            ),
+
+                            onPressed: () {
+                              print("abrir tela de detalhe do evento depois");
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
 
       bottomNavigationBar: SafeArea(
