@@ -19,20 +19,24 @@ class DiesNativitates extends StatelessWidget{
             color: Colors.black87,
           ),
         ),
-        Row(
-          children: [
-            Expanded(child: 
-              ScripturamArca(content: '20',),
-            ),
-            SizedBox(width: 8,),
-            Expanded(child: 
-              ScripturamArca(content: '06',),
-            ),
-            SizedBox(width: 8,),
-            Expanded(child: 
-              ScripturamArca(content: '26',),
-            ),
-          ],
+        SizedBox(height: 12,),
+        SizedBox(
+          height: 86,
+          child: Row(
+            children: [
+              Expanded(child: 
+                ScripturamArca(content: '23',),
+              ),
+              SizedBox(width: 8,),
+              Expanded(child: 
+                ScripturamArca(content: '06',),
+              ),
+              SizedBox(width: 8,),
+              Expanded(child: 
+                ScripturamArca(content: '2002',),
+              ),
+            ],
+          )
         ),
       ]
     );
