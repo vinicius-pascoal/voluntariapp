@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/login/pages/agenda.dart';
 import 'package:voluntariapp/features/login/pages/notificacoes.dart';
+import 'package:voluntariapp/features/history/pages/history_page.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -299,7 +300,16 @@ class _BottomMenu extends StatelessWidget {
                 size: 32,
               ),
             ),
-            const Icon(Icons.history, color: Colors.white, size: 36),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HistoryPage()),
+                );
+              },
+              icon: const Icon(Icons.history, color: Colors.white, size: 36),
+            ),
+
             const Icon(Icons.logout, color: Colors.white, size: 34),
           ],
         ),
