@@ -16,11 +16,7 @@ class TipoPerfilPage extends StatelessWidget {
             left: 16,
             child: GestureDetector(
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                      content: Text(
-                          'Aqui voltaria para a tela de Login do colega.')),
-                );
+                Navigator.pop(context);
               },
               child: const Icon(
                 Icons.arrow_circle_left_outlined,
@@ -97,4 +93,3 @@ class TipoPerfilPage extends StatelessWidget {
     );
   }
 }
-

@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'VoluntariAPP',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.blue)),
+      theme:
+          ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
       home: const LoginPage(),
       debugShowCheckedModeBanner: false,
     );

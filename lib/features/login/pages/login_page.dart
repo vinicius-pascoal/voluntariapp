@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/history/pages/history_page.dart';
+import 'package:voluntariapp/features/cadastro/pages/tipo_perfil_page.dart';
 import 'package:voluntariapp/features/login/pages/register_page.dart';
 import 'package:voluntariapp/features/login/widgets/login_button.dart';
 import 'package:voluntariapp/features/login/widgets/login_layout.dart';
@@ -57,7 +58,7 @@ class LoginPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const RegisterPage(),
+                      builder: (context) => const TipoPerfilPage(),
                     ),
                   );
                 },
