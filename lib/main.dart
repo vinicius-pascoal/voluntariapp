@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'features/cadastro/pages/tipo_perfil_page.dart';
 
 import 'features/login/pages/login_page.dart';
 
@@ -13,8 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'VoluntariAPP',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.blue)),
+      theme:
+          ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
       home: const LoginPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:voluntariapp/features/history/pages/history_page.dart';
+import 'package:voluntariapp/features/cadastro/pages/tipo_perfil_page.dart';
 import 'package:voluntariapp/features/login/pages/register_page.dart';
 import 'package:voluntariapp/features/login/widgets/login_button.dart';
 import 'package:voluntariapp/features/login/widgets/login_layout.dart';
 import 'package:voluntariapp/features/login/widgets/login_text_field.dart';
 import 'package:voluntariapp/features/login/pages/forgot_password_page.dart';
+import 'package:voluntariapp/features/login/pages/home.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -25,7 +28,15 @@ class LoginPage extends StatelessWidget {
               suffixIcon: Icon(Icons.visibility_outlined),
             ),
             SizedBox(height: 50),
-            LoginButton(text: 'Login', onPressed: () {}),
+            LoginButton(
+              text: 'Login',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Home()),
+                );
+              },
+            ),
             SizedBox(height: 100),
             Center(
               child: TextButton(
@@ -47,7 +58,7 @@ class LoginPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const RegisterPage(),
+                      builder: (context) => const TipoPerfilPage(),
                     ),
                   );
                 },
