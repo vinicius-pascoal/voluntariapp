@@ -164,8 +164,8 @@ class AppAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipOval(
-      child: Image.asset(
-        'assets/avatar.png',
+      child: Image.network(
+        'https://picsum.photos/200',
         width: size,
         height: size,
         fit: BoxFit.cover,
