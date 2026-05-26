@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:voluntariapp/features/login/pages/login_page.dart';
 
 class CadastroVoluntarioPage extends StatelessWidget {
   const CadastroVoluntarioPage({super.key});
@@ -15,7 +16,7 @@ class CadastroVoluntarioPage extends StatelessWidget {
         scrolledUnderElevation: 0,
         leading: IconButton(
           icon: const Icon(
-            Icons.arrow_back,
+            Icons.arrow_back_ios_new,
             color: Colors.black,
           ),
           onPressed: () {
@@ -245,7 +246,13 @@ class CadastroVoluntarioPage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const LoginPage()),
+                                );
+                              },
                               child: const Text(
                                 'Cadastrar',
                                 style: TextStyle(

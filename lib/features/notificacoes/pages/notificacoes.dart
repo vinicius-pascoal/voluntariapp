@@ -71,7 +71,7 @@ class _NotificationHeader extends StatelessWidget {
                   border: Border.all(color: Colors.white, width: 3.5),
                 ),
                 child: const Icon(
-                  Icons.arrow_back,
+                  Icons.arrow_back_ios_new,
                   color: Colors.white,
                   size: 25,
                 ),

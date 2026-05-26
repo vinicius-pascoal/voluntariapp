@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/cadastro/pages/tipo_perfil_page.dart';
 import 'package:voluntariapp/features/login/widgets/login_layout.dart';
 import 'package:voluntariapp/features/login/widgets/login_text_field.dart';
+import 'package:voluntariapp/features/login/pages/login_page.dart';
 
 import '../widgets/forgot_password.dart';
 import '../widgets/recovery_button.dart';
@@ -36,14 +37,14 @@ class ForgotPasswordPage extends StatelessWidget {
               suffixIcon: Icon(Icons.visibility_outlined),
             ),
             const SizedBox(height: 20),
-            RecoveryButton(text: 'Recuperar', onPressed: () {}),
-            const SizedBox(height: 32),
-            Center(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text('Esqueci minha senha.'),
-              ),
-            ),
+            RecoveryButton(
+                text: 'Recuperar',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                  );
+                }),
             SizedBox(height: 10),
             Center(
               child: TextButton(
@@ -51,11 +52,11 @@ class ForgotPasswordPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const TipoPerfilPage(),
+                      builder: (context) => const LoginPage(),
                     ),
                   );
                 },
-                child: const Text('Não possui uma conta? Cadastre-se.'),
+                child: const Text('Voltar ao Login.'),
               ),
             ),
           ],

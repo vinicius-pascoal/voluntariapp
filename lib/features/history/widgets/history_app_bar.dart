@@ -20,7 +20,7 @@ class HistoryAppBar extends StatelessWidget implements PreferredSizeWidget {
       // ),
       leading: IconButton(
         icon: const Icon(
-          Icons.arrow_circle_left_outlined,
+          Icons.arrow_back_ios_new,
           //Icons.arrow_back_ios_new,
           size: 40,
           color: Color(0xFFFFA500),

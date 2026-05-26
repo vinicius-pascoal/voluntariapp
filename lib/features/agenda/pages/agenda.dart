@@ -78,19 +78,10 @@ class _AgendaHeader extends StatelessWidget {
       children: [
         InkWell(
           onTap: onBackPressed,
-          borderRadius: BorderRadius.circular(20),
-          child: Container(
-            width: 39,
-            height: 39,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: const Color(0xFFFFA500), width: 2),
-            ),
-            child: const Icon(
-              Icons.arrow_back,
-              color: Color(0xFFFFA500),
-              size: 29,
-            ),
+          child: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Color(0xFFFFA500),
+            size: 29,
           ),
         ),
         const Spacer(),

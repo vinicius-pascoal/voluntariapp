@@ -19,7 +19,7 @@ class TipoPerfilPage extends StatelessWidget {
                 Navigator.pop(context);
               },
               child: const Icon(
-                Icons.arrow_circle_left_outlined,
+                Icons.arrow_back_ios_new,
                 color: Colors.orange,
                 size: 50,
               ),
