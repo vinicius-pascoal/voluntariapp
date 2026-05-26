@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minhaparte/features/cadastro/pages/tipo_perfil_page.dart';
+import 'features/cadastro/pages/tipo_perfil_page.dart';
 
 void main() {
   runApp(const MyApp());
