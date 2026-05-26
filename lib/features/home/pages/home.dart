@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/agenda/pages/agenda.dart';
 import 'package:voluntariapp/features/notificacoes/pages/notificacoes.dart';
 import 'package:voluntariapp/features/history/pages/history_page.dart';
+import 'package:voluntariapp/features/detalhesEvento/detalhes_evento.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -211,7 +212,6 @@ class EventCard extends StatelessWidget {
                 width: 95,
                 height: 39,
                 child: ElevatedButton(
-                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
                     backgroundColor: const Color(0xFFFFA500),
@@ -221,6 +221,13 @@ class EventCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DetalhesEvento()),
+                    );
+                  },
                   child: const Text(
                     'Detalhes',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
