@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'VoluntariAPP',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.blue)),
-      home: const PerfilPage(),
+      home: const DetalhesEvento(),
     );
   }
 }

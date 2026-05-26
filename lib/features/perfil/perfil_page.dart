@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/perfil/widgets/bullam_retro.dart';
 import 'package:voluntariapp/features/perfil/widgets/dies_nativitates.dart';
 import 'package:voluntariapp/features/perfil/widgets/imago_profili.dart';
+import 'package:voluntariapp/features/perfil/widgets/navigationis.dart';
 import 'package:voluntariapp/features/perfil/widgets/scripturam_arca.dart';
 class PerfilPage extends StatelessWidget{
     const PerfilPage({super.key});
@@ -54,36 +55,7 @@ class PerfilPage extends StatelessWidget{
             )
           ),
            bottomNavigationBar: SafeArea(
-            child: BottomNavigationBar(
-              backgroundColor: Color(0xFFFFA500),
-              currentIndex: 0,
-              type: BottomNavigationBarType.fixed,
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home_filled, color: Colors.white, size: 40),
-                  label: 'Início',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.calendar_today_outlined,
-                    color: Colors.white,
-                    size: 40,
-                  ),
-                  label: 'Agenda',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.history, color: Colors.white, size: 40),
-                  label: 'Histórico',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.logout, color: Colors.white, size: 40),
-                  label: 'Sair',
-                ),
-              ],
-            ),
+            child: Navigationis(),
           ),
         );
     }
