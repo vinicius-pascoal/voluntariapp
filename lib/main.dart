@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:voluntariapp/features/detalhesEvento/detalhes_evento.dart';
 import 'package:voluntariapp/features/perfil/perfil_page.dart';
 
 
