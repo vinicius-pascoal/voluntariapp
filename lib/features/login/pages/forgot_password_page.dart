@@ -22,19 +22,19 @@ class ForgotPasswordPage extends StatelessWidget {
               label: 'Informe seu E-mail:',
               hint: 'Digite seu E-mail',
             ),
-            SizedBox(height: 18),
+            SizedBox(height: 30),
             ForgotPasswordTextField(
               label: 'Crie uma nova senha:',
               hint: 'Crie a nova senha:',
             ),
-            SizedBox(height: 18),
+            SizedBox(height: 30),
             ForgotPasswordTextField(
               label: 'Confirme sua senha:',
               hint: '*********',
               obscureText: true,
               suffixIcon: Icon(Icons.visibility_outlined),
             ),
-            SizedBox(height: 25),
+            SizedBox(height: 30),
             RecoveryButton(text: 'Recuperar', onPressed: () {}),
             SizedBox(height: 40),
             Center(

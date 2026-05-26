@@ -21,14 +21,14 @@ class RegisterPage extends StatelessWidget {
               label: 'Insira seu E-mail:',
               hint: 'Insira o seu E-mail aqui.',
             ),
-            SizedBox(height: 18),
+            SizedBox(height: 30),
             ForgotPasswordTextField(
               label: 'Insira o código:',
               hint: '*********',
               obscureText: true,
               suffixIcon: Icon(Icons.visibility_outlined),
             ),
-            SizedBox(height: 25),
+            SizedBox(height: 30),
             RecoveryButton(text: 'Cadastrar', onPressed: () {}),
             SizedBox(height: 100),
             Center(

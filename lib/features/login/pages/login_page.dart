@@ -17,14 +17,14 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             LoginTextField(label: 'Login', hint: 'E-mail'),
-            SizedBox(height: 18),
+            SizedBox(height: 25),
             LoginTextField(
               label: 'Senha',
               hint: '*********',
               obscureText: true,
               suffixIcon: Icon(Icons.visibility_outlined),
             ),
-            SizedBox(height: 40),
+            SizedBox(height: 50),
             LoginButton(text: 'Login', onPressed: () {}),
             SizedBox(height: 100),
             Center(
