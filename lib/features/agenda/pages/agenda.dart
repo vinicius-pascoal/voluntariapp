@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/home/pages/home.dart';
 import 'package:voluntariapp/features/agenda/widgets/agenda_calendar_card.dart';
 import 'package:voluntariapp/features/notificacoes/pages/notificacoes.dart';
+import 'package:voluntariapp/features/perfil/perfil_page.dart';
 
 class Agenda extends StatefulWidget {
   const Agenda({super.key});
@@ -161,25 +162,35 @@ class AppAvatar extends StatelessWidget {
 
   final double size;
 
+  //adicionar onclick para ir para a página de perfil do usuário
   @override
   Widget build(BuildContext context) {
-    return ClipOval(
-      child: Image.network(
-        'https://picsum.photos/200',
-        width: size,
-        height: size,
-        fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) {
-          return Container(
-            width: size,
-            height: size,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color(0xFFD9D9D9),
-            ),
-            child: Icon(Icons.person, color: Colors.white, size: size * 0.65),
-          );
-        },
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const PerfilPage()),
+        );
+      },
+      borderRadius: BorderRadius.circular(size / 2),
+      child: ClipOval(
+        child: Image.network(
+          'https://picsum.photos/200',
+          width: size,
+          height: size,
+          fit: BoxFit.cover,
+          errorBuilder: (_, __, ___) {
+            return Container(
+              width: size,
+              height: size,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFFD9D9D9),
+              ),
+              child: Icon(Icons.person, color: Colors.white, size: size * 0.65),
+            );
+          },
+        ),
       ),
     );
   }
