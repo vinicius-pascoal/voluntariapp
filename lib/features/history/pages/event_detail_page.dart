@@ -38,7 +38,7 @@ class _EventDetailState extends State<EventDetailPage> {
           ],
         ),
       ),
-      bottomNavigationBar: const BottomNavigation(),
+      bottomNavigationBar: const BottomMenu(),
     );
   }
 }

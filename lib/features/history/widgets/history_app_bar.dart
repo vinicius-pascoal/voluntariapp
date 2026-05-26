@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:voluntariapp/features/agenda/pages/agenda.dart';
+import 'package:voluntariapp/features/notificacoes/pages/notificacoes.dart';
+import 'package:voluntariapp/features/perfil/perfil_page.dart';
 
 class HistoryAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HistoryAppBar({super.key});
@@ -46,14 +49,20 @@ class HistoryAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           tooltip: 'Ver notificações',
           onPressed: () {
-            // lógica do botão
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Notificacoes()),
+            );
           },
         ),
         IconButton(
           icon: const Icon(Icons.person, color: Color(0xFFFFA500), size: 40),
           tooltip: 'Página de Perfil',
           onPressed: () {
-            // lógica do botão
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const PerfilPage()),
+            );
           },
         ),
       ],

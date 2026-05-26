@@ -1,36 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:voluntariapp/features/agenda/pages/agenda.dart';
+import 'package:voluntariapp/features/home/pages/home.dart';
+import 'package:voluntariapp/features/notificacoes/pages/notificacoes.dart';
+import 'package:voluntariapp/features/history/pages/history_page.dart';
 
-class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({super.key});
+class BottomMenu extends StatelessWidget {
+  const BottomMenu();
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: 64,
-      child: BottomNavigationBar(
-        backgroundColor: const Color(0xFFFFA500),
-        currentIndex: 2,
-        type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        iconSize: 30,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled),
-            label: 'Início',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today_outlined),
-            label: 'Agenda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'Histórico',
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Sair'),
-        ],
+      color: const Color(0xFFFFA500),
+      child: SafeArea(
+        top: false,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Home()),
+                );
+              },
+              icon: const Icon(Icons.home, color: Colors.white, size: 32),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Agenda()),
+                );
+              },
+              icon: const Icon(
+                Icons.calendar_month_outlined,
+                color: Colors.white,
+                size: 32,
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HistoryPage()),
+                );
+              },
+              icon: const Icon(Icons.history, color: Colors.white, size: 36),
+            ),
+            const Icon(Icons.logout, color: Colors.white, size: 34),
+          ],
+        ),
       ),
     );
   }

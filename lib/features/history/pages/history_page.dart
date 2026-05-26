@@ -35,7 +35,7 @@ class _HistoryState extends State<HistoryPage> {
         ],
       ),
 
-      bottomNavigationBar: BottomNavigation(),
+      bottomNavigationBar: BottomMenu(),
     );
   }
 }

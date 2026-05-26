@@ -3,6 +3,7 @@ import 'package:voluntariapp/features/home/pages/home.dart';
 import 'package:voluntariapp/features/agenda/widgets/agenda_calendar_card.dart';
 import 'package:voluntariapp/features/notificacoes/pages/notificacoes.dart';
 import 'package:voluntariapp/features/perfil/perfil_page.dart';
+import 'package:voluntariapp/features/history/pages/history_page.dart';
 
 class Agenda extends StatefulWidget {
   const Agenda({super.key});
@@ -231,7 +232,15 @@ class _BottomMenu extends StatelessWidget {
                 size: 32,
               ),
             ),
-            const Icon(Icons.history, color: Colors.white, size: 36),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HistoryPage()),
+                );
+              },
+              icon: const Icon(Icons.history, color: Colors.white, size: 36),
+            ),
             const Icon(Icons.logout, color: Colors.white, size: 34),
           ],
         ),
