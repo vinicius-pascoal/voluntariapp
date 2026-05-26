@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'VoluntariAPP',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.blue)),
       home: const LoginPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
