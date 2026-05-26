@@ -105,7 +105,7 @@ class NotificationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 99,
+      height: 150,
       decoration: BoxDecoration(
         color: const Color(0xFFF9F9F9),
         borderRadius: BorderRadius.circular(8),
@@ -148,7 +148,7 @@ class NotificationCard extends StatelessWidget {
             ),
           ),
           const Positioned(
-            top: 12,
+            top: 6,
             right: 14,
             child: Icon(
               Icons.notifications,
