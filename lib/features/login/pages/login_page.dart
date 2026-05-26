@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:voluntariapp/features/history/pages/history_page.dart';
 import 'package:voluntariapp/features/login/pages/register_page.dart';
 import 'package:voluntariapp/features/login/widgets/login_button.dart';
 import 'package:voluntariapp/features/login/widgets/login_layout.dart';
