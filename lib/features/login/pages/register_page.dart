@@ -5,7 +5,7 @@ import 'package:voluntariapp/features/login/widgets/login_layout.dart';
 import '../widgets/forgot_password.dart';
 import '../widgets/recovery_button.dart';
 
-class RegisterPage extends StatelessWidget{
+class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
 
   @override
@@ -17,7 +17,10 @@ class RegisterPage extends StatelessWidget{
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ForgotPasswordTextField(label: 'Insira seu E-mail:', hint: 'Insira o seu E-mail aqui.'),
+            ForgotPasswordTextField(
+              label: 'Insira seu E-mail:',
+              hint: 'Insira o seu E-mail aqui.',
+            ),
             SizedBox(height: 18),
             ForgotPasswordTextField(
               label: 'Insira o código:',
@@ -25,8 +28,8 @@ class RegisterPage extends StatelessWidget{
               obscureText: true,
               suffixIcon: Icon(Icons.visibility_outlined),
             ),
-            SizedBox(height: 18),
-            RecoveryButton(text: 'Recuperar', onPressed: (){}),
+            SizedBox(height: 25),
+            RecoveryButton(text: 'Cadastrar', onPressed: () {}),
             SizedBox(height: 100),
             Center(
               child: TextButton(
@@ -41,7 +44,7 @@ class RegisterPage extends StatelessWidget{
                 child: const Text('Esqueci minha senha.'),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             Center(
               child: TextButton(
                 onPressed: () {},

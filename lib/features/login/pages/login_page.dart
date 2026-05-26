@@ -24,8 +24,8 @@ class LoginPage extends StatelessWidget {
               obscureText: true,
               suffixIcon: Icon(Icons.visibility_outlined),
             ),
-            SizedBox(height: 18),
-            LoginButton(text: 'Login', onPressed: (){}),
+            SizedBox(height: 40),
+            LoginButton(text: 'Login', onPressed: () {}),
             SizedBox(height: 100),
             Center(
               child: TextButton(
