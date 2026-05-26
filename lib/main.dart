@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'features/cadastro/pages/tipo_perfil_page.dart';
 
 import 'features/login/pages/login_page.dart';
 
