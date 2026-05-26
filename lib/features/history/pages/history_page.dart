@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/history_app_bar.dart';
-import '../widgets/history_bottom_navigation.dart';
+import '../widgets/bottom_navigation.dart';
 import '../widgets/history_card.dart';
 import '../widgets/history_search.dart';
 
@@ -17,16 +17,13 @@ class _HistoryState extends State<HistoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFDDE9FF),
-      //preferencialmente mudar o background pra branco mesmo;
 
+      //preferencialmente mudar o background pra branco mesmo;
       appBar: HistoryAppBar(),
 
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: HistorySearch(),
-          ),
+          Padding(padding: const EdgeInsets.all(16), child: HistorySearch()),
 
           Expanded(
             child: ListView.builder(
@@ -40,7 +37,7 @@ class _HistoryState extends State<HistoryPage> {
         ],
       ),
 
-      bottomNavigationBar: HistoryBottomNavigation(),
+      bottomNavigationBar: BottomNavigation(),
     );
   }
 }

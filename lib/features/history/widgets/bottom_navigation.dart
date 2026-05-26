@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HistoryBottomNavigation extends StatelessWidget {
-  const HistoryBottomNavigation({super.key});
+class BottomNavigation extends StatelessWidget {
+  const BottomNavigation({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +37,7 @@ class HistoryBottomNavigation extends StatelessWidget {
             label: 'Histórico',
           ),
 
-          BottomNavigationBarItem(
-            icon: Icon(Icons.logout),
-            label: 'Sair',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Sair'),
         ],
       ),
     );

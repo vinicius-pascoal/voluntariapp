@@ -21,7 +21,6 @@ class HistoryAppBar extends StatelessWidget implements PreferredSizeWidget {
           //Icons.arrow_back_ios_new,
           size: 40,
           color: Color(0xFFFFA500),
-          
         ),
 
         onPressed: () {

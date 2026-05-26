@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:voluntariapp/features/history/pages/event_detail_page.dart';
 
 class HistoryCard extends StatelessWidget {
   const HistoryCard({super.key});
@@ -60,7 +61,12 @@ class HistoryCard extends StatelessWidget {
                   ),
 
                   onPressed: () {
-                    print("abrir tela de detalhe do evento depois");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const EventDetailPage(),
+                      ),
+                    );
                   },
                 ),
               ),
