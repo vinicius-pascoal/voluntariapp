@@ -21,7 +21,6 @@ flutter:
   
   assets:
     - assets/logo.png
-    - assets/google.png
     - assets/letra.png
     
   #  - images/a_dot_burr.jpeg
