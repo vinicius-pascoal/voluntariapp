@@ -15,35 +15,29 @@ class _EventDetailState extends State<EventDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFDDE9FF),
-
       body: SafeArea(
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(16),
-
               child: Align(
                 alignment: Alignment.centerLeft,
-
                 child: IconButton(
                   icon: const Icon(
                     Icons.arrow_back_ios_new,
                     color: Color(0xFFFFA500),
                     size: 28,
                   ),
-
                   onPressed: () {
                     Navigator.pop(context);
                   },
                 ),
               ),
             ),
-
             const EventInfo()
           ],
         ),
       ),
-
       bottomNavigationBar: const BottomNavigation(),
     );
   }

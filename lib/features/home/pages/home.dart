@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:voluntariapp/features/login/pages/agenda.dart';
-import 'package:voluntariapp/features/login/pages/notificacoes.dart';
+import 'package:voluntariapp/features/agenda/pages/agenda.dart';
+import 'package:voluntariapp/features/notificacoes/pages/notificacoes.dart';
 import 'package:voluntariapp/features/history/pages/history_page.dart';
 
 class Home extends StatelessWidget {
@@ -78,7 +78,6 @@ class _HomeHeader extends StatelessWidget {
                   ),
                 ),
                 const Icon(Icons.search, color: Color(0xFF49454F), size: 25),
-
                 const SizedBox(width: 16),
               ],
             ),
@@ -309,7 +308,6 @@ class _BottomMenu extends StatelessWidget {
               },
               icon: const Icon(Icons.history, color: Colors.white, size: 36),
             ),
-
             const Icon(Icons.logout, color: Colors.white, size: 34),
           ],
         ),

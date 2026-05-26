@@ -24,11 +24,9 @@ class _HistoryState extends State<HistoryPage> {
       body: Column(
         children: [
           Padding(padding: const EdgeInsets.all(16), child: HistorySearch()),
-
           Expanded(
             child: ListView.builder(
               itemCount: 8,
-
               itemBuilder: (context, index) {
                 return HistoryCard();
               },

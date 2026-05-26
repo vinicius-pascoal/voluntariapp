@@ -250,9 +250,8 @@ class _CalendarDaysGrid extends StatelessWidget {
               width: 39,
               height: 39,
               decoration: BoxDecoration(
-                color: isSelected
-                    ? const Color(0xFFFFA500)
-                    : Colors.transparent,
+                color:
+                    isSelected ? const Color(0xFFFFA500) : Colors.transparent,
                 borderRadius: BorderRadius.circular(8),
                 border: isToday && !isSelected
                     ? Border.all(color: const Color(0xFFFFA500), width: 1.5)
@@ -265,8 +264,8 @@ class _CalendarDaysGrid extends StatelessWidget {
                     color: isSelected
                         ? Colors.white
                         : isCurrentMonth
-                        ? const Color(0xFF303030)
-                        : const Color(0xFFA7A7A7),
+                            ? const Color(0xFF303030)
+                            : const Color(0xFFA7A7A7),
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),

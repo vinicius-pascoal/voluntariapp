@@ -22,7 +22,6 @@ class HistoryAppBar extends StatelessWidget implements PreferredSizeWidget {
           size: 40,
           color: Color(0xFFFFA500),
         ),
-
         onPressed: () {
           Navigator.pop(context);
         },
@@ -45,19 +44,14 @@ class HistoryAppBar extends StatelessWidget implements PreferredSizeWidget {
             color: Color(0xFFFFA500),
             size: 28,
           ),
-
           tooltip: 'Ver notificações',
-
           onPressed: () {
             // lógica do botão
           },
         ),
-
         IconButton(
           icon: const Icon(Icons.person, color: Color(0xFFFFA500), size: 40),
-
           tooltip: 'Página de Perfil',
-
           onPressed: () {
             // lógica do botão
           },

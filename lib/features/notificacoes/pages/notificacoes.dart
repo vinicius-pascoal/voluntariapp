@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:voluntariapp/features/login/pages/agenda.dart';
-import 'package:voluntariapp/features/login/pages/home.dart';
+import 'package:voluntariapp/features/agenda/pages/agenda.dart';
+import 'package:voluntariapp/features/home/pages/home.dart';
 
 class Notificacoes extends StatelessWidget {
   const Notificacoes({super.key});

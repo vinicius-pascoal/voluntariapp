@@ -9,11 +9,9 @@ class HistorySearch extends StatelessWidget {
       child: SizedBox(
         width: 283,
         height: 42,
-
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.1),
@@ -22,20 +20,15 @@ class HistorySearch extends StatelessWidget {
               ),
             ],
           ),
-
           child: TextField(
             decoration: InputDecoration(
               hintText: 'Pesquisar',
-
               prefixIcon: Icon(Icons.filter_list),
-
               suffixIcon: Icon(Icons.search),
-
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
                 borderSide: BorderSide.none,
               ),
-
               filled: true,
               fillColor: Color(0xFFF9F9F9),
             ),

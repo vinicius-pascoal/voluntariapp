@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:voluntariapp/features/login/pages/home.dart';
-import 'package:voluntariapp/features/login/widgets/agenda_calendar_card.dart';
-import 'package:voluntariapp/features/login/pages/notificacoes.dart';
+import 'package:voluntariapp/features/home/pages/home.dart';
+import 'package:voluntariapp/features/agenda/widgets/agenda_calendar_card.dart';
+import 'package:voluntariapp/features/notificacoes/pages/notificacoes.dart';
 
 class Agenda extends StatefulWidget {
   const Agenda({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:voluntariapp/features/login/pages/register_page.dart';
+import 'package:voluntariapp/features/cadastro/pages/tipo_perfil_page.dart';
 import 'package:voluntariapp/features/login/widgets/login_layout.dart';
 import 'package:voluntariapp/features/login/widgets/login_text_field.dart';
 
@@ -50,7 +50,7 @@ class ForgotPasswordPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const RegisterPage(),
+                      builder: (context) => const TipoPerfilPage(),
                     ),
                   );
                 },
