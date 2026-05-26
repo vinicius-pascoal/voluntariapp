@@ -17,17 +17,18 @@ class LoginPage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LoginTextField(label: 'Login', hint: 'E-mail'),
-            SizedBox(height: 18),
+            const LoginTextField(label: 'Login', hint: 'E-mail'),
+            const SizedBox(height: 18),
             LoginTextField(
               label: 'Senha',
               hint: '*********',
               obscureText: true,
               suffixIcon: Icon(Icons.visibility_outlined),
             ),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
             LoginButton(
               text: 'Login',
               onPressed: () {
@@ -37,7 +38,7 @@ class LoginPage extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(height: 100),
+            const SizedBox(height: 48),
             Center(
               child: TextButton(
                 onPressed: () {

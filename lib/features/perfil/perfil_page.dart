@@ -4,6 +4,7 @@ import 'package:voluntariapp/features/perfil/widgets/dies_nativitates.dart';
 import 'package:voluntariapp/features/perfil/widgets/imago_profili.dart';
 import 'package:voluntariapp/features/perfil/widgets/navigationis.dart';
 import 'package:voluntariapp/features/perfil/widgets/scripturam_arca.dart';
+import 'package:voluntariapp/widgets/bottonMenu.dart';
 
 class PerfilPage extends StatelessWidget {
   const PerfilPage({super.key});
@@ -14,36 +15,45 @@ class PerfilPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFDDE9FF),
+      backgroundColor: const Color(0xFFDDE9FF),
       body: SafeArea(
-        child: Center(
-          child: Container(
-            width: 550,
-            height: 850,
-            alignment: Alignment.center,
-            padding: EdgeInsets.only(left: 24, right: 24, top: 56, bottom: 28),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Container(width: 40, height: 40, child: BullamRetro()),
-                  ],
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: 550,
+                    minHeight: constraints.maxHeight,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(width: 40, height: 40, child: BullamRetro()),
+                        ],
+                      ),
+                      const SizedBox(height: 24),
+                      const ImagoProfili(),
+                      const SizedBox(height: 32),
+                      const ScripturamArca(label: "Nome", content: "Ocupação"),
+                      const SizedBox(height: 20),
+                      const DiesNativitates(),
+                      const SizedBox(height: 32),
+                      ScripturamArca(label: "Sobre Mim", content: teste),
+                      const SizedBox(height: 32),
+                      ScripturamArca(label: "Experiências", content: teste),
+                    ],
+                  ),
                 ),
-                ImagoProfili(),
-                SizedBox(height: 49),
-                ScripturamArca(label: "Nome", content: "Ocupação"),
-                SizedBox(height: 25),
-                DiesNativitates(),
-                SizedBox(height: 49),
-                ScripturamArca(label: "Sobre Mim", content: teste),
-                SizedBox(height: 49),
-                ScripturamArca(label: "Experiências", content: teste),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
-      bottomNavigationBar: SafeArea(child: Navigationis()),
+      bottomNavigationBar: const BottomMenu(),
     );
   }
 }

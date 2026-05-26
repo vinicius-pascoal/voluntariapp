@@ -15,22 +15,23 @@ class RegisterPage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ForgotPasswordTextField(
+            const ForgotPasswordTextField(
               label: 'Insira seu E-mail:',
               hint: 'Insira o seu E-mail aqui.',
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 20),
             ForgotPasswordTextField(
               label: 'Insira o código:',
               hint: '*********',
               obscureText: true,
               suffixIcon: Icon(Icons.visibility_outlined),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 20),
             RecoveryButton(text: 'Cadastrar', onPressed: () {}),
-            SizedBox(height: 100),
+            const SizedBox(height: 40),
             Center(
               child: TextButton(
                 onPressed: () {

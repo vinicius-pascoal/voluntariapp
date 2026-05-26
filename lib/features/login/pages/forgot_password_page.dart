@@ -16,27 +16,28 @@ class ForgotPasswordPage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LoginTextField(
+            const LoginTextField(
               label: 'Informe seu E-mail:',
               hint: 'Digite seu E-mail',
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 20),
             ForgotPasswordTextField(
               label: 'Crie uma nova senha:',
               hint: 'Crie a nova senha:',
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 20),
             ForgotPasswordTextField(
               label: 'Confirme sua senha:',
               hint: '*********',
               obscureText: true,
               suffixIcon: Icon(Icons.visibility_outlined),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 20),
             RecoveryButton(text: 'Recuperar', onPressed: () {}),
-            SizedBox(height: 40),
+            const SizedBox(height: 32),
             Center(
               child: TextButton(
                 onPressed: () {},

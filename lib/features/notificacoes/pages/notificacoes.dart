@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/agenda/pages/agenda.dart';
 import 'package:voluntariapp/features/home/pages/home.dart';
+import 'package:voluntariapp/widgets/bottonMenu.dart';
 
 class Notificacoes extends StatelessWidget {
   const Notificacoes({super.key});
@@ -40,7 +41,7 @@ class Notificacoes extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const _BottomMenu(),
+      bottomNavigationBar: const BottomMenu(),
     );
   }
 }
@@ -157,50 +158,6 @@ class NotificationCard extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _BottomMenu extends StatelessWidget {
-  const _BottomMenu();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 64,
-      color: const Color(0xFFFFA500),
-      child: SafeArea(
-        top: false,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Home()),
-                );
-              },
-              icon: const Icon(Icons.home, color: Colors.white, size: 32),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Agenda()),
-                );
-              },
-              icon: const Icon(
-                Icons.calendar_month_outlined,
-                color: Colors.white,
-                size: 32,
-              ),
-            ),
-            const Icon(Icons.history, color: Colors.white, size: 36),
-            const Icon(Icons.logout, color: Colors.white, size: 34),
-          ],
-        ),
       ),
     );
   }

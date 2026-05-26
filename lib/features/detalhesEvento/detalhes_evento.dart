@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/perfil/widgets/arca_informationis.dart';
 import 'package:voluntariapp/features/perfil/widgets/bullam_retro.dart';
 import 'package:voluntariapp/features/perfil/widgets/navigationis.dart';
+import 'package:voluntariapp/widgets/bottonMenu.dart';
 
 class DetalhesEvento extends StatelessWidget {
   const DetalhesEvento({super.key});
@@ -52,9 +53,7 @@ class DetalhesEvento extends StatelessWidget {
                     "ONG organizadora",
                     style: TextStyle(fontSize: 14),
                   ),
-
                   const SizedBox(height: 24),
-
                   ArcaInformationis(
                     label: "Descrição",
                     child: const Text(
@@ -63,9 +62,7 @@ class DetalhesEvento extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-
                   const SizedBox(height: 16),
-
                   ArcaInformationis(
                     label: 'Data',
                     child: Row(
@@ -88,9 +85,7 @@ class DetalhesEvento extends StatelessWidget {
                       ],
                     ),
                   ),
-
                   const SizedBox(height: 16),
-
                   ArcaInformationis(
                     label: 'Local',
                     child: SizedBox(
@@ -110,7 +105,6 @@ class DetalhesEvento extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFFFFA500),
                       foregroundColor: Colors.white,
-
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -124,7 +118,7 @@ class DetalhesEvento extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: const SafeArea(child: Navigationis()),
+      bottomNavigationBar: const BottomMenu(),
     );
   }
 }

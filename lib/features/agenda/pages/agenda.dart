@@ -4,6 +4,7 @@ import 'package:voluntariapp/features/agenda/widgets/agenda_calendar_card.dart';
 import 'package:voluntariapp/features/notificacoes/pages/notificacoes.dart';
 import 'package:voluntariapp/features/perfil/perfil_page.dart';
 import 'package:voluntariapp/features/history/pages/history_page.dart';
+import 'package:voluntariapp/widgets/bottonMenu.dart';
 
 class Agenda extends StatefulWidget {
   const Agenda({super.key});
@@ -34,30 +35,34 @@ class _AgendaState extends State<Agenda> {
       backgroundColor: const Color(0xFFDDE9FF),
       body: SafeArea(
         bottom: false,
-        child: Column(
-          children: [
-            const SizedBox(height: 53),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 17),
-              child: _AgendaHeader(
-                onBackPressed: () => Navigator.of(context).maybePop(),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 32),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 17),
+                child: _AgendaHeader(
+                  onBackPressed: () => Navigator.of(context).maybePop(),
+                ),
               ),
-            ),
-            const SizedBox(height: 84),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 42),
-              child: AgendaCalendarCard(onDateChanged: _updateSelectedDate),
-            ),
-            const SizedBox(height: 71),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 42),
-              child: _EventReminder(selectedDate: _selectedDate),
-            ),
-            const Spacer(),
-          ],
+              const SizedBox(height: 40),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 42),
+                child: AgendaCalendarCard(onDateChanged: _updateSelectedDate),
+              ),
+              const SizedBox(height: 32),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 42),
+                child: _EventReminder(selectedDate: _selectedDate),
+              ),
+              const SizedBox(height: 24),
+            ],
+          ),
         ),
       ),
-      bottomNavigationBar: const _BottomMenu(),
+      bottomNavigationBar: const BottomMenu(),
     );
   }
 }
@@ -191,58 +196,6 @@ class AppAvatar extends StatelessWidget {
               child: Icon(Icons.person, color: Colors.white, size: size * 0.65),
             );
           },
-        ),
-      ),
-    );
-  }
-}
-
-class _BottomMenu extends StatelessWidget {
-  const _BottomMenu();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 64,
-      color: const Color(0xFFFFA500),
-      child: SafeArea(
-        top: false,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Home()),
-                );
-              },
-              icon: const Icon(Icons.home, color: Colors.white, size: 32),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Agenda()),
-                );
-              },
-              icon: const Icon(
-                Icons.calendar_month_outlined,
-                color: Colors.white,
-                size: 32,
-              ),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HistoryPage()),
-                );
-              },
-              icon: const Icon(Icons.history, color: Colors.white, size: 36),
-            ),
-            const Icon(Icons.logout, color: Colors.white, size: 34),
-          ],
         ),
       ),
     );

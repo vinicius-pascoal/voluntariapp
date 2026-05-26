@@ -27,16 +27,24 @@ class LoginLayout extends StatelessWidget {
           : null,
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: Column(
-            children: [
-              const SizedBox(height: 65),
-              Image.asset('assets/images/logo.png'),
-              const SizedBox(height: 80),
-              Padding(padding: const EdgeInsets.only(top: 30), child: child),
-            ],
-          ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(height: 24),
+                    Image.asset('assets/images/logo.png'),
+                    const SizedBox(height: 32),
+                    child,
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );

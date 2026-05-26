@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/agenda/pages/agenda.dart';
 import 'package:voluntariapp/features/home/pages/home.dart';
 import 'package:voluntariapp/features/notificacoes/pages/notificacoes.dart';
+import 'package:voluntariapp/features/perfil/perfil_page.dart';
 import 'package:voluntariapp/features/history/pages/history_page.dart';
+import 'package:voluntariapp/features/login/pages/login_page.dart';
 
 class BottomMenu extends StatelessWidget {
   const BottomMenu();
@@ -48,7 +50,15 @@ class BottomMenu extends StatelessWidget {
               },
               icon: const Icon(Icons.history, color: Colors.white, size: 36),
             ),
-            const Icon(Icons.logout, color: Colors.white, size: 34),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                );
+              },
+              icon: const Icon(Icons.logout, color: Colors.white, size: 34),
+            ),
           ],
         ),
       ),
