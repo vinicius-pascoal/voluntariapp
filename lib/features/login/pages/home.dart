@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/login/pages/agenda.dart';
+import 'package:voluntariapp/features/login/pages/notificacoes.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -55,12 +56,16 @@ class _HomeHeader extends StatelessWidget {
               color: const Color(0xFFF9F9F9),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: const Row(
+            child: Row(
               children: [
-                SizedBox(width: 15),
-                Icon(Icons.filter_list, color: Color(0xFF49454F), size: 27),
-                SizedBox(width: 15),
-                Expanded(
+                const SizedBox(width: 15),
+                const Icon(
+                  Icons.filter_list,
+                  color: Color(0xFF49454F),
+                  size: 27,
+                ),
+                const SizedBox(width: 15),
+                const Expanded(
                   child: Text(
                     'Pesquisar',
                     style: TextStyle(
@@ -71,24 +76,36 @@ class _HomeHeader extends StatelessWidget {
                     ),
                   ),
                 ),
-                Icon(Icons.search, color: Color(0xFF49454F), size: 25),
-                SizedBox(width: 16),
+                const Icon(Icons.search, color: Color(0xFF49454F), size: 25),
+
+                const SizedBox(width: 16),
               ],
             ),
           ),
         ),
         const SizedBox(width: 11),
-        Container(
-          width: 28,
-          height: 28,
-          decoration: const BoxDecoration(
-            color: Color(0xFFFFA500),
-            shape: BoxShape.circle,
-          ),
-          child: const Icon(
-            Icons.notifications_none_rounded,
-            color: Colors.white,
-            size: 22,
+        InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Notificacoes()),
+            );
+          },
+          borderRadius: BorderRadius.circular(14),
+          child: Container(
+            width: 28,
+            height: 28,
+            decoration: const BoxDecoration(
+              color: Color(0xFFFFA500),
+              shape: BoxShape.circle,
+            ),
+            child: const Center(
+              child: Icon(
+                Icons.notifications_none_rounded,
+                color: Colors.white,
+                size: 22,
+              ),
+            ),
           ),
         ),
         const SizedBox(width: 6),

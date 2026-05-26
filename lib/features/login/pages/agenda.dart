@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/login/pages/home.dart';
 import 'package:voluntariapp/features/login/widgets/agenda_calendar_card.dart';
+import 'package:voluntariapp/features/login/pages/notificacoes.dart';
 
 class Agenda extends StatefulWidget {
   const Agenda({super.key});
@@ -86,17 +87,28 @@ class _AgendaHeader extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        Container(
-          width: 28,
-          height: 28,
-          decoration: const BoxDecoration(
-            color: Color(0xFFFFA500),
-            shape: BoxShape.circle,
-          ),
-          child: const Icon(
-            Icons.notifications_none_rounded,
-            color: Colors.white,
-            size: 22,
+        InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Notificacoes()),
+            );
+          },
+          borderRadius: BorderRadius.circular(14),
+          child: Container(
+            width: 28,
+            height: 28,
+            decoration: const BoxDecoration(
+              color: Color(0xFFFFA500),
+              shape: BoxShape.circle,
+            ),
+            child: const Center(
+              child: Icon(
+                Icons.notifications_none_rounded,
+                color: Colors.white,
+                size: 22,
+              ),
+            ),
           ),
         ),
         const SizedBox(width: 8),
