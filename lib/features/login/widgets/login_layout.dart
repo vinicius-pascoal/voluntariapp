@@ -31,7 +31,7 @@ class LoginLayout extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 32),
           child: Column(
             children: [
-              const SizedBox(height: 55),
+              const SizedBox(height: 65),
               Image.asset('assets/images/logo.png'),
               const SizedBox(height: 80),
               Padding(padding: const EdgeInsets.only(top: 30), child: child),
