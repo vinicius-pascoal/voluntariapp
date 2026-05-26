@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:voluntariapp/features/login/pages/agenda.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -254,15 +255,35 @@ class _BottomMenu extends StatelessWidget {
     return Container(
       height: 64,
       color: const Color(0xFFFFA500),
-      child: const SafeArea(
+      child: SafeArea(
         top: false,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Icon(Icons.home, color: Colors.white, size: 32),
-            Icon(Icons.calendar_month_outlined, color: Colors.white, size: 32),
-            Icon(Icons.history, color: Colors.white, size: 36),
-            Icon(Icons.logout, color: Colors.white, size: 34),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Home()),
+                );
+              },
+              icon: const Icon(Icons.home, color: Colors.white, size: 32),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Agenda()),
+                );
+              },
+              icon: const Icon(
+                Icons.calendar_month_outlined,
+                color: Colors.white,
+                size: 32,
+              ),
+            ),
+            const Icon(Icons.history, color: Colors.white, size: 36),
+            const Icon(Icons.logout, color: Colors.white, size: 34),
           ],
         ),
       ),
