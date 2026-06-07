@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/perfil/widgets/arca_informationis.dart';
 import 'package:voluntariapp/features/perfil/widgets/bullam_retro.dart';
-import 'package:voluntariapp/features/perfil/widgets/navigationis.dart';
+import 'package:voluntariapp/models/event.dart';
+import 'package:voluntariapp/services/participation_service.dart';
 import 'package:voluntariapp/widgets/bottonMenu.dart';
 
 class DetalhesEvento extends StatelessWidget {
-  const DetalhesEvento({super.key});
+  final Event event;
+
+  const DetalhesEvento({
+    super.key,
+    required this.event,
+  });
 
   // TODO: mudar quando implementar estado.
   final String teste = "Escreva aqui.";
@@ -13,7 +19,7 @@ class DetalhesEvento extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFDDE9FF),
+      backgroundColor: const Color(0xFFDDE9FF),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 32),
@@ -42,24 +48,25 @@ class DetalhesEvento extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Container(width: 40, height: 40, child: BullamRetro()),
+                      Container(
+                          width: 40, height: 40, child: const BullamRetro()),
                     ],
                   ),
-                  const Text(
-                    "NOME DO EVENTO",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  Text(
+                    event.title,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  const Text(
-                    "ONG organizadora",
-                    style: TextStyle(fontSize: 14),
+                  Text(
+                    event.organization,
+                    style: const TextStyle(fontSize: 14),
                   ),
                   const SizedBox(height: 24),
                   ArcaInformationis(
                     label: "Descrição",
-                    child: const Text(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur turpis quam, blandit scelerisque erat nec, faucibus dictum purus. Proin finibus gravida metus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus dictum purus. Proin finibus gravida metus.",
+                    child: Text(
+                      event.description,
                       textAlign: TextAlign.justify,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -67,15 +74,15 @@ class DetalhesEvento extends StatelessWidget {
                     label: 'Data',
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
-                          '20/02/2000',
-                          style: TextStyle(
+                         '${event.date.day}/${event.date.month}/${event.date.year}',
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
                           ),
                         ),
-                        Text(
+                        const Text(
                           '07:00',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -103,13 +110,15 @@ class DetalhesEvento extends StatelessWidget {
                   const SizedBox(height: 25),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFFFA500),
+                      backgroundColor: const Color(0xFFFFA500),
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      await ParticipationService().participate(event);
+                    },
                     child: const Text("Confirmar Presença"),
                   ),
                 ],
