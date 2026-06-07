@@ -17,8 +17,14 @@ class Event {
     required this.date,
   });
 
-  factory Event.fromFirestor(DocumentSnapshot doc){
-    final data = doc.data() as Map<String, dynamic>;
+  factory Event.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>?;
+
+    if (data == null) {
+      throw Exception(
+        'Evento não encontrado',
+      );
+    }
 
     return Event(
       id: doc.id,
@@ -26,7 +32,9 @@ class Event {
       organization: data['organization'] ?? '',
       description: data['description'] ?? '',
       location: data['location'] ?? '',
-      date: (data['date'] as Timestamp).toDate(),
+      date: data['date'] != null
+          ? (data['date'] as Timestamp).toDate()
+          : DateTime.now(),
     );
   }
 }
