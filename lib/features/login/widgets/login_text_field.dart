@@ -26,6 +26,7 @@ class LoginTextField extends StatelessWidget {
         Card(
           elevation: 5,
           child: TextField(
+            controller: controller,
             obscureText: obscureText,
             decoration: InputDecoration(
               hintText: hint,
