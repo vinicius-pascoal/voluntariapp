@@ -2,7 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/history/pages/event_detail_page.dart';
 
 class HistoryCard extends StatelessWidget {
-  const HistoryCard({super.key});
+  final String title;
+
+  final String organization;
+
+  final String eventId;
+
+  const HistoryCard({
+    super.key,
+    required this.title,
+    required this.organization,
+    required this.eventId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +32,18 @@ class HistoryCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Ação X',
-                      style: TextStyle(
+                   Text(
+                      title,
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                         fontSize: 20,
                       ),
                     ),
                     const SizedBox(height: 3),
-                    const Text(
-                      'Participou do evento tal, data X com início na hora YY:YY. ',
-                      style: TextStyle(fontSize: 12, color: Colors.black54),
+                    Text(
+                     'Participou do evento organizado por $organization',
+                      style: const TextStyle(fontSize: 12, color: Colors.black54),
                     ),
                   ],
                 ),
@@ -51,7 +62,9 @@ class HistoryCard extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const EventDetailPage(),
+                        builder: (context) =>  EventDetailPage(
+                          eventId: eventId,
+                        ),
                       ),
                     );
                   },

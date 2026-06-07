@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:voluntariapp/models/event.dart';
 
 class EventInfo extends StatelessWidget {
-  const EventInfo({super.key});
+  final Event event;
+
+  const EventInfo({
+    super.key,
+    required this.event,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +28,14 @@ class EventInfo extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text(
-            'NOME DO EVENTO',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          Text(
+            event.title,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 4),
-          const Text(
-            'ONG organizadora',
-            style: TextStyle(color: Colors.black54),
+          Text(
+            event.organization,
+            style: const TextStyle(color: Colors.black54),
           ),
           const SizedBox(height: 24),
           Container(
@@ -39,16 +45,16 @@ class EventInfo extends StatelessWidget {
               color: const Color(0xFFDDE9FF),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Descrição',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  event.description,
                 ),
               ],
             ),
@@ -61,16 +67,20 @@ class EventInfo extends StatelessWidget {
               color: const Color(0xFFDDE9FF),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Data: 20/02/2000',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  'Data: ${event.date.day.toString().padLeft(2, '0')}/${event.date.month.toString().padLeft(2, '0')}/${event.date.year}',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
-                  'Horário: 07:00',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  'Horário: ${event.date.hour.toString().padLeft(2, '0')}:${event.date.minute.toString().padLeft(2, '0')}',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
