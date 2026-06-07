@@ -27,12 +27,12 @@ class ForgotPasswordPage extends StatelessWidget {
             const SizedBox(height: 20),
             ForgotPasswordTextField(
               label: 'Crie uma nova senha:',
-              hint: 'Crie a nova senha:',
+              hint: '************',
             ),
             const SizedBox(height: 20),
             ForgotPasswordTextField(
               label: 'Confirme sua senha:',
-              hint: '*********',
+              hint: '************',
               obscureText: true,
               suffixIcon: Icon(Icons.visibility_outlined),
             ),
