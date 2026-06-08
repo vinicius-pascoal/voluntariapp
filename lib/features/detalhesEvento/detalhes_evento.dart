@@ -8,13 +8,34 @@ import 'package:voluntariapp/widgets/bottonMenu.dart';
 class DetalhesEvento extends StatelessWidget {
   final Event event;
 
-  const DetalhesEvento({
-    super.key,
-    required this.event,
-  });
+  const DetalhesEvento({super.key, required this.event});
 
-  // TODO: mudar quando implementar estado.
-  final String teste = "Escreva aqui.";
+  Future<void> _toggleParticipation(BuildContext context, bool isParticipating) async {
+    try {
+      if (isParticipating) {
+        await ParticipationService().cancelParticipation(event.id);
+        if (!context.mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Presença cancelada com sucesso.')),
+        );
+      } else {
+        final created = await ParticipationService().participate(event);
+        if (!context.mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(created
+                ? 'Presença confirmada com sucesso.'
+                : 'Você já confirmou presença nesse evento.'),
+          ),
+        );
+      }
+    } catch (e) {
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Erro ao atualizar presença: $e')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,39 +51,48 @@ class DetalhesEvento extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
+                  color: Colors.black.withOpacity(0.1),
                   blurRadius: 4,
                   offset: const Offset(0, 4),
                 ),
               ],
             ),
             child: SingleChildScrollView(
-              padding: const EdgeInsets.only(
-                left: 24,
-                right: 24,
-                top: 24,
-                bottom: 240,
-              ),
+              padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 120),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                          width: 40, height: 40, child: const BullamRetro()),
-                    ],
+                  const Row(
+                    children: [SizedBox(width: 40, height: 40, child: BullamRetro())],
                   ),
                   Text(
                     event.title,
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
-                  Text(
-                    event.organization,
-                    style: const TextStyle(fontSize: 14),
-                  ),
+                  const SizedBox(height: 4),
+                  Text(event.organization, style: const TextStyle(fontSize: 14)),
+                  if (event.category.isNotEmpty) ...[
+                    const SizedBox(height: 8),
+                    Chip(label: Text(event.category)),
+                  ],
                   const SizedBox(height: 24),
+                  if (event.imageUrl.trim().isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                          event.imageUrl,
+                          width: double.infinity,
+                          height: 180,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                        ),
+                      ),
+                    ),
                   ArcaInformationis(
-                    label: "Descrição",
+                    label: 'Descrição',
                     child: Text(
                       event.description,
                       textAlign: TextAlign.justify,
@@ -76,18 +106,12 @@ class DetalhesEvento extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                         '${event.date.day}/${event.date.month}/${event.date.year}',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                          ),
+                          _formatDate(event.date),
+                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                         ),
-                        const Text(
-                          '07:00',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                          ),
+                        Text(
+                          _formatTime(event.date),
+                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                         ),
                       ],
                     ),
@@ -95,31 +119,62 @@ class DetalhesEvento extends StatelessWidget {
                   const SizedBox(height: 16),
                   ArcaInformationis(
                     label: 'Local',
-                    child: SizedBox(
-                      height: 250,
-                      width: double.infinity,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(4),
-                        child: Image.network(
-                          "https://stories.cnnbrasil.com.br/wp-content/uploads/sites/9/2024/12/mapa-ibge-aracaju-sao-cristovao.jpg",
-                          fit: BoxFit.cover,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            const Icon(Icons.location_on_outlined, size: 18),
+                            const SizedBox(width: 6),
+                            Expanded(
+                              child: Text(
+                                event.location.isEmpty ? 'Local não informado' : event.location,
+                                style: const TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
+                        const SizedBox(height: 12),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(4),
+                          child: Image.asset(
+                            'assets/images/map.png',
+                            height: 180,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                            errorBuilder: (_, __, ___) => Container(
+                              height: 180,
+                              color: Colors.white,
+                              child: const Center(child: Icon(Icons.map_outlined, size: 72)),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 25),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFFFA500),
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
+                  if (event.availableSlots > 0) ...[
+                    const SizedBox(height: 16),
+                    ArcaInformationis(
+                      label: 'Vagas',
+                      child: Text('${event.availableSlots} vagas disponíveis'),
                     ),
-                    onPressed: () async {
-                      await ParticipationService().participate(event);
+                  ],
+                  const SizedBox(height: 25),
+                  StreamBuilder<bool>(
+                    stream: ParticipationService().isParticipating(event.id),
+                    builder: (context, snapshot) {
+                      final isParticipating = snapshot.data ?? false;
+                      return ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: isParticipating ? Colors.redAccent : const Color(0xFFFFA500),
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                        ),
+                        onPressed: () => _toggleParticipation(context, isParticipating),
+                        icon: Icon(isParticipating ? Icons.close : Icons.check),
+                        label: Text(isParticipating ? 'Cancelar Presença' : 'Confirmar Presença'),
+                      );
                     },
-                    child: const Text("Confirmar Presença"),
                   ),
                 ],
               ),
@@ -129,5 +184,13 @@ class DetalhesEvento extends StatelessWidget {
       ),
       bottomNavigationBar: const BottomMenu(),
     );
+  }
+
+  String _formatDate(DateTime date) {
+    return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
+  }
+
+  String _formatTime(DateTime date) {
+    return '${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}';
   }
 }

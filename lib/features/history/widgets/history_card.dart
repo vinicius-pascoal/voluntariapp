@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/history/pages/event_detail_page.dart';
+import 'package:voluntariapp/models/participation.dart';
 
 class HistoryCard extends StatelessWidget {
-  final String title;
+  final Participation participation;
 
-  final String organization;
-
-  final String eventId;
-
-  const HistoryCard({
-    super.key,
-    required this.title,
-    required this.organization,
-    required this.eventId,
-  });
+  const HistoryCard({super.key, required this.participation});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 116,
       width: 384,
       child: Card(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -32,18 +24,23 @@ class HistoryCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                   Text(
-                      title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 20,
-                      ),
+                    Text(
+                      participation.eventTitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20),
                     ),
                     const SizedBox(height: 3),
                     Text(
-                     'Participou do evento organizado por $organization',
+                      'Participou do evento organizado por ${participation.organization}',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       style: const TextStyle(fontSize: 12, color: Colors.black54),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      _formatDate(participation.eventDate),
+                      style: const TextStyle(fontSize: 12, color: Colors.black45, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -53,19 +50,11 @@ class HistoryCard extends StatelessWidget {
                 child: IconButton(
                   padding: EdgeInsets.zero,
                   constraints: const BoxConstraints(),
-                  icon: const Icon(
-                    Icons.expand_more,
-                    color: Color(0xFFFFA500),
-                    size: 28,
-                  ),
+                  icon: const Icon(Icons.expand_more, color: Color(0xFFFFA500), size: 28),
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) =>  EventDetailPage(
-                          eventId: eventId,
-                        ),
-                      ),
+                      MaterialPageRoute(builder: (context) => EventDetailPage(eventId: participation.eventId)),
                     );
                   },
                 ),
@@ -75,5 +64,9 @@ class HistoryCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _formatDate(DateTime date) {
+    return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year} às ${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}';
   }
 }

@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/agenda/pages/agenda.dart';
-import 'package:voluntariapp/features/home/pages/home.dart';
-import 'package:voluntariapp/features/notificacoes/pages/notificacoes.dart';
-import 'package:voluntariapp/features/perfil/perfil_page.dart';
 import 'package:voluntariapp/features/history/pages/history_page.dart';
+import 'package:voluntariapp/features/home/pages/home.dart';
 import 'package:voluntariapp/features/login/pages/login_page.dart';
+import 'package:voluntariapp/services/auth_service.dart';
 
 class BottomMenu extends StatelessWidget {
-  const BottomMenu();
+  const BottomMenu({super.key});
+
+  Future<void> _logout(BuildContext context) async {
+    await AuthService().signOut();
+    if (!context.mounted) return;
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginPage()),
+      (_) => false,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +30,7 @@ class BottomMenu extends StatelessWidget {
           children: [
             IconButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const Home()),
                 );
@@ -30,7 +39,7 @@ class BottomMenu extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const Agenda()),
                 );
@@ -43,7 +52,7 @@ class BottomMenu extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const HistoryPage()),
                 );
@@ -51,12 +60,7 @@ class BottomMenu extends StatelessWidget {
               icon: const Icon(Icons.history, color: Colors.white, size: 36),
             ),
             IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
-                );
-              },
+              onPressed: () => _logout(context),
               icon: const Icon(Icons.logout, color: Colors.white, size: 34),
             ),
           ],
