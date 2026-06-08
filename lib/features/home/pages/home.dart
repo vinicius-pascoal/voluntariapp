@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/notificacoes/pages/notificacoes.dart';
 import 'package:voluntariapp/features/detalhesEvento/detalhes_evento.dart';
 import 'package:voluntariapp/features/perfil/perfil_page.dart';
+import 'package:voluntariapp/models/event.dart';
+import 'package:voluntariapp/services/event_service.dart';
 import 'package:voluntariapp/widgets/bottonMenu.dart';
 
 class Home extends StatelessWidget {
@@ -22,16 +24,50 @@ class Home extends StatelessWidget {
             ),
             const SizedBox(height: 28),
             Expanded(
-              child: ListView.separated(
-                padding: const EdgeInsets.fromLTRB(11, 0, 12, 16),
-                itemCount: 6,
-                separatorBuilder: (_, __) => const SizedBox(height: 8),
-                itemBuilder: (context, index) {
-                  return const EventCard(
-                    organizationName: 'ONG Tal de Tal',
-                    eventName: 'Nome do Evento',
-                    description:
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur turpis quam, blandit scelerisque et nec, faucibus dictum purus. Proin finibus gravida metus',
+              child: StreamBuilder<List<Event>>(
+                stream: EventService().getEvents(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text(
+                        snapshot.error.toString(),
+                      ),
+                    );
+                  }
+
+                  final events = snapshot.data ?? [];
+
+                  if (events.isEmpty) {
+                    return const Center(
+                      child: Text('Nenhum evento encontrado'),
+                    );
+                  }
+
+                  return ListView.separated(
+                    padding: const EdgeInsets.fromLTRB(
+                      11,
+                      0,
+                      12,
+                      16,
+                    ),
+                    itemCount: events.length,
+                    separatorBuilder: (_, __) => const SizedBox(height: 8),
+                    itemBuilder: (context, index) {
+                      final event = events[index];
+
+                      return EventCard(
+                        organizationName: event.organization,
+                        eventName: event.title,
+                        description: event.description,
+                        event: event,
+                      );
+                    },
                   );
                 },
               ),
@@ -117,8 +153,11 @@ class _HomeHeader extends StatelessWidget {
 }
 
 class EventCard extends StatelessWidget {
+  final Event event;
+
   const EventCard({
     super.key,
+    required this.event,
     required this.organizationName,
     required this.eventName,
     required this.description,
@@ -225,7 +264,9 @@ class EventCard extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const DetalhesEvento()),
+                          builder: (context) => DetalhesEvento(
+                                event: event,
+                              )),
                     );
                   },
                   child: const Text(
