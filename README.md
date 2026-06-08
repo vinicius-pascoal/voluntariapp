@@ -10,6 +10,7 @@
 | Willijefferson Alves | Login, Recuperar Senha e Redefinir Senha |
 
 ## Links dos Vídeos
+| Aluno | Links |
 | --- | --- |
 | Vinicius Pascoal |  |
 | Tayssa Santos |  |
