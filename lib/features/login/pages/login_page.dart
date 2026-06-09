@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:voluntariapp/features/cadastro/pages/tipo_perfil_page.dart';
 import 'package:voluntariapp/features/home/pages/home.dart';
@@ -32,9 +33,9 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> fazerLogin() async {
     final email = emailController.text.trim();
-    final senha = senhaController.text.trim();
+    final senha = senhaController.text;
 
-    if (email.isEmpty || senha.isEmpty) {
+    if (email.isEmpty || senha.trim().isEmpty) {
       setState(() => mensagemErro = 'Informe e-mail e senha para continuar.');
       return;
     }
@@ -47,33 +48,94 @@ class _LoginPageState extends State<LoginPage> {
     try {
       await AuthService().login(email: email, password: senha);
       if (!mounted) return;
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (_) => const Home()),
-        (_) => false,
-      );
+      _abrirHome();
     } on FirebaseAuthException catch (e) {
-      setState(() {
-        switch (e.code) {
-          case 'invalid-credential':
-          case 'wrong-password':
-          case 'user-not-found':
-            mensagemErro = 'E-mail ou senha incorretos.';
-            break;
-          case 'invalid-email':
-            mensagemErro = 'E-mail inválido.';
-            break;
-          case 'user-disabled':
-            mensagemErro = 'Esta conta foi desativada.';
-            break;
-          default:
-            mensagemErro = 'Erro ao fazer login. Tente novamente.';
-        }
-      });
-    } catch (_) {
+      if (kDebugMode) {
+        debugPrint('FirebaseAuthException no login: ${e.code} - ${e.message}');
+      }
+      if (!mounted) return;
+      setState(() => mensagemErro = _mensagemErroFirebase(e.code));
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('Erro inesperado no login: $e');
+      }
+      if (!mounted) return;
       setState(() => mensagemErro = 'Erro inesperado ao fazer login.');
     } finally {
       if (mounted) setState(() => carregando = false);
+    }
+  }
+
+  Future<void> entrarComGoogle() async {
+    setState(() {
+      carregando = true;
+      mensagemErro = null;
+    });
+
+    try {
+      final credential = await AuthService().signInWithGoogle(
+        defaultType: 'voluntario',
+      );
+
+      if (!mounted) return;
+
+      if (credential == null) {
+        setState(() => mensagemErro = 'Login com Google cancelado.');
+        return;
+      }
+
+      _abrirHome();
+    } on FirebaseAuthException catch (e) {
+      if (kDebugMode) {
+        debugPrint('FirebaseAuthException no Google: ${e.code} - ${e.message}');
+      }
+      if (!mounted) return;
+      setState(() => mensagemErro = _mensagemErroFirebase(e.code));
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('Erro inesperado no Google: $e');
+      }
+      if (!mounted) return;
+      setState(
+        () => mensagemErro =
+            'Não foi possível entrar com Google. Verifique a configuração do provedor no Firebase.',
+      );
+    } finally {
+      if (mounted) setState(() => carregando = false);
+    }
+  }
+
+  void _abrirHome() {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (_) => const Home()),
+      (_) => false,
+    );
+  }
+
+  String _mensagemErroFirebase(String code) {
+    switch (code) {
+      case 'invalid-credential':
+      case 'wrong-password':
+      case 'user-not-found':
+        return 'E-mail ou senha incorretos. Se essa conta foi criada pelo Google, entre pelo botão "Login com Google".';
+      case 'invalid-email':
+        return 'E-mail inválido.';
+      case 'user-disabled':
+        return 'Esta conta foi desativada.';
+      case 'too-many-requests':
+        return 'Muitas tentativas de login. Aguarde um pouco e tente novamente.';
+      case 'network-request-failed':
+        return 'Falha de conexão. Verifique sua internet e tente novamente.';
+      case 'operation-not-allowed':
+        return 'Login com e-mail e senha não está habilitado no Firebase Authentication.';
+      case 'account-exists-with-different-credential':
+        return 'Já existe uma conta com esse e-mail usando outro método de login.';
+      case 'popup-closed-by-user':
+      case 'cancelled-popup-request':
+        return 'Login com Google cancelado.';
+      default:
+        return 'Erro ao fazer login. Código: $code';
     }
   }
 
@@ -120,31 +182,60 @@ class _LoginPageState extends State<LoginPage> {
             carregando
                 ? const Center(child: CircularProgressIndicator())
                 : LoginButton(text: 'Login', onPressed: fazerLogin),
-            const SizedBox(height: 48),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              height: 48,
+              child: OutlinedButton.icon(
+                onPressed: carregando ? null : entrarComGoogle,
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.black87,
+                  side: const BorderSide(color: Colors.orange),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                icon: Image.asset(
+                  'assets/letra.png',
+                  width: 24,
+                  height: 24,
+                  fit: BoxFit.contain,
+                ),
+                label: const Text(
+                  'Login com Google',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            const SizedBox(height: 40),
             Center(
               child: TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ForgotPasswordPage(),
-                    ),
-                  );
-                },
+                onPressed: carregando
+                    ? null
+                    : () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ForgotPasswordPage(),
+                          ),
+                        );
+                      },
                 child: const Text('Esqueci minha senha.'),
               ),
             ),
             const SizedBox(height: 20),
             Center(
               child: TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const TipoPerfilPage(),
-                    ),
-                  );
-                },
+                onPressed: carregando
+                    ? null
+                    : () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const TipoPerfilPage(),
+                          ),
+                        );
+                      },
                 child: const Text('Não possui uma conta? Cadastre-se.'),
               ),
             ),

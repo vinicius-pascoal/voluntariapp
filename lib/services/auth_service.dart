@@ -12,7 +12,7 @@ class AuthService {
   }) {
     return _auth.signInWithEmailAndPassword(
       email: email.trim(),
-      password: password.trim(),
+      password: password,
     );
   }
 
@@ -64,7 +64,8 @@ class AuthService {
     return credential;
   }
 
-  Future<UserCredential?> signInWithGoogle({required String defaultType}) async {
+  Future<UserCredential?> signInWithGoogle(
+      {required String defaultType}) async {
     final googleUser = await GoogleSignIn().signIn();
     if (googleUser == null) return null;
 
@@ -78,7 +79,8 @@ class AuthService {
     final user = userCredential.user;
     if (user == null) return userCredential;
 
-    final existingDoc = await _firestore.collection('users').doc(user.uid).get();
+    final existingDoc =
+        await _firestore.collection('users').doc(user.uid).get();
     final existingType = existingDoc.data()?['type']?.toString();
 
     await _saveUserProfile(
@@ -99,8 +101,17 @@ class AuthService {
   }
 
   Future<void> signOut() async {
-    await GoogleSignIn().signOut();
+    // Primeiro encerra a sessão do Firebase, que é o que controla o acesso
+    // às telas protegidas do aplicativo.
     await _auth.signOut();
+
+    // O logout do Google é complementar. Ele pode falhar em plataformas sem
+    // configuração do Google Sign-In; nesse caso, o Firebase já foi deslogado.
+    try {
+      await GoogleSignIn().signOut();
+    } catch (_) {
+      // Ignora falhas do provedor para não bloquear a saída do sistema.
+    }
   }
 
   Future<void> _saveUserProfile({
