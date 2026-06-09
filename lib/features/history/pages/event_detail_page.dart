@@ -1,63 +1,41 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
-import 'package:voluntariapp/models/event.dart';
 import 'package:voluntariapp/features/history/widgets/event_info.dart';
+import 'package:voluntariapp/models/event.dart';
+import 'package:voluntariapp/services/event_service.dart';
 import 'package:voluntariapp/widgets/bottonMenu.dart';
 
 class EventDetailPage extends StatefulWidget {
   final String eventId;
 
-  const EventDetailPage({
-    super.key,
-    required this.eventId,
-  });
+  const EventDetailPage({super.key, required this.eventId});
 
   @override
   State<EventDetailPage> createState() => _EventDetailState();
 }
 
 class _EventDetailState extends State<EventDetailPage> {
-  Future<Event> getEvent() async {
-    final doc = await FirebaseFirestore.instance
-        .collection('events')
-        .doc(widget.eventId)
-        .get();
-
-    return Event.fromFirestore(doc);
-  }
+  late final Future<Event> eventFuture = EventService().getEventById(widget.eventId);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFDDE9FF),
       body: FutureBuilder<Event>(
-        future: getEvent(),
+        future: eventFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.hasError) {
-            return Center(
-              child: Text(
-                snapshot.error.toString(),
-              ),
-            );
+            return Center(child: Text(snapshot.error.toString()));
           }
 
           if (!snapshot.hasData) {
-            return const Center(
-              child: Text(
-                'Evento não encontrado',
-              ),
-            );
+            return const Center(child: Text('Evento não encontrado'));
           }
 
           final event = snapshot.data!;
-
           return SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.only(bottom: 16),
@@ -69,20 +47,12 @@ class _EventDetailState extends State<EventDetailPage> {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: IconButton(
-                        icon: const Icon(
-                          Icons.arrow_back_ios_new,
-                          color: Color(0xFFFFA500),
-                          size: 28,
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
+                        icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFFFFA500), size: 28),
+                        onPressed: () => Navigator.pop(context),
                       ),
                     ),
                   ),
-                  EventInfo(
-                    event: event,
-                  ),
+                  EventInfo(event: event),
                 ],
               ),
             ),

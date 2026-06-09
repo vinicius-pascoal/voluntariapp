@@ -1,11 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:voluntariapp/features/home/pages/home.dart';
+import 'package:voluntariapp/features/login/pages/login_page.dart';
 import 'package:voluntariapp/firebase_options.dart';
-import 'features/cadastro/pages/tipo_perfil_page.dart';
 
-import 'features/login/pages/login_page.dart';
-
-void main()  async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
@@ -22,10 +22,36 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'VoluntariAPP',
-      theme:
-          ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
-      home: const LoginPage(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
+      ),
+      home: const _AuthGate(),
       debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class _AuthGate extends StatelessWidget {
+  const _AuthGate();
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        if (snapshot.hasData) {
+          return const Home();
+        }
+
+        return const LoginPage();
+      },
     );
   }
 }
